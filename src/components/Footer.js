@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 
 export default function Footer() {
     const todos = useSelector(state => state)
-    const pendingTodos = todos.filter(todo => todo.status === 'pending')
+    const pendingTodos = todos?.filter(todo => todo.status === 'pending')
     return (
         <div className="mt-4 flex justify-between text-xs text-gray-500">
-            <p>{pendingTodos?.length} tasks left</p>
+            <p>{pendingTodos?.length || 0} tasks left</p>
             <ul className="flex space-x-1 items-center text-xs">
                 <li className="cursor-pointer font-bold">All</li>
                 <li>|</li>
