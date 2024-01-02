@@ -8,7 +8,8 @@ import { addTodo } from "../redux/todo/actions";
 export default function Header() {
     const dispatch = useDispatch()
     const [todoFormData, setTodoFormData] = useState({
-        text: ''
+        text: '',
+        status: 'pending'
     })
     const handleInputChange = (e) => {
         const { name, value } = e.target;
