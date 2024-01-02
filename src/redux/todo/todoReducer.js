@@ -1,4 +1,4 @@
-import { ADD_TODO, CLEAR_COMPLETED_TODO, COMPLETE_ALL_TODO, DELETE_TODO } from "./actionTypes";
+import { ADD_TODO, CLEAR_COMPLETED_TODO, COMPLETE_ALL_TODO, COMPLETE_A_TODO, DELETE_TODO } from "./actionTypes";
 
 const initialTodoState = []
 
@@ -11,6 +11,13 @@ const todoReducer = (state = initialTodoState, action) => {
         case DELETE_TODO:
             return state.filter(todo => todo.todoId !== action.payload.todoId)
 
+        case COMPLETE_A_TODO:
+            return [...state].map(todo => {
+                if (todo.todoId === action.payload.todoId) {
+                    todo.status = "completed"
+                }
+                return { ...todo }
+            })
         case COMPLETE_ALL_TODO:
             return [...state].map(todo => todo.status = "completed")
 
