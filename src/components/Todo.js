@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import cancelImage from "../assets/images/cancel.png";
-import { completeATodo, deleteTodo } from "../redux/todo/actions";
+import { completeATodo, deleteTodo, incompleteATodo } from "../redux/todo/actions";
 
 export default function Todo({ todo }) {
     const dispatch = useDispatch()
@@ -10,9 +10,10 @@ export default function Todo({ todo }) {
     }
 
     const handleCompleteTodo = (e) => {
-        const isChecked = e.target.value
-        if (isChecked) {
+        if (status === 'pending') {
             dispatch(completeATodo({ todoId }))
+        } else {
+            dispatch(incompleteATodo({ todoId }))
         }
     }
     return (
@@ -22,7 +23,7 @@ export default function Todo({ todo }) {
                     type="checkbox"
                     className="appearance-none opacity-0 absolute rounded-full h-5 w-5"
                     id="todoCheckbox"
-                    onChange={handleCompleteTodo}
+                    onClick={handleCompleteTodo}
                 />
                 <svg
                     className={`${status !== 'completed' && 'hidden'} fill-current w-3 h-3 text-green-500 pointer-events-none`}
