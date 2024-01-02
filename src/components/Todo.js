@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import cancelImage from "../assets/images/cancel.png";
-import { completeATodo, deleteTodo, incompleteATodo } from "../redux/todo/actions";
+import { completeATodo, deleteTodo, incompleteATodo, updatecolorOfTodo } from "../redux/todo/actions";
 
 export default function Todo({ todo }) {
     const dispatch = useDispatch()
-    const { text, status, todoId } = todo
+    const { text, status, todoId, color } = todo
     const handleDeleteTodo = () => {
         dispatch(deleteTodo({ todoId }))
     }
@@ -15,6 +15,10 @@ export default function Todo({ todo }) {
         } else {
             dispatch(incompleteATodo({ todoId }))
         }
+    }
+
+    const handleUpdateColor = (color) => {
+        dispatch(updatecolorOfTodo({ todoId, color }))
     }
     return (
         <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
@@ -38,11 +42,11 @@ export default function Todo({ todo }) {
                 {text}
             </div>
 
-            <div className="flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-green-500 hover:bg-green-500 bg-green-500"></div>
+            <div className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-green-500 hover:bg-green-500 ${color === 'green' && 'bg-green-500'}`} onClick={() => handleUpdateColor('green')}></div>
 
-            <div className="flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-yellow-500 hover:bg-yellow-500"></div>
+            <div className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-yellow-500 hover:bg-yellow-500 ${color === 'yellow' && 'bg-yellow-500'}`} onClick={() => handleUpdateColor('yellow')} ></div>
 
-            <div className="flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-red-500 hover:bg-red-500"></div>
+            <div className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-red-500 hover:bg-red-500 ${color === 'red' && 'bg-red-500'}`} onClick={() => handleUpdateColor('red')} ></div>
 
             <img
                 src={cancelImage}
