@@ -1,4 +1,4 @@
-import { ADD_TODO, CLEAR_COMPLETED_TODO, COMPLETE_ALL_TODO, COMPLETE_A_TODO, DELETE_TODO, INCOMPLETE_A_TODO } from "./actionTypes"
+import { ADD_TODO, CLEAR_COMPLETED_TODO, COMPLETE_ALL_TODO, COMPLETE_A_TODO, DELETE_TODO, INCOMPLETE_A_TODO, UPDATE_COLOR_OF_TODO } from "./actionTypes"
 
 export const addTodo = (payload) => {
     return {
@@ -33,6 +33,12 @@ export const completeAllTodo = (payload) => {
 export const clearCompletedTodo = (payload) => {
     return {
         type: CLEAR_COMPLETED_TODO,
+        payload
+    }
+}
+export const updatecolorOfTodo = (payload) => {
+    return {
+        type: UPDATE_COLOR_OF_TODO,
         payload
     }
 }
