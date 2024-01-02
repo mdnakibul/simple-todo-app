@@ -1,4 +1,4 @@
-import { ADD_TODO, CLEAR_COMPLETED_TODO, COMPLETE_ALL_TODO, COMPLETE_A_TODO, DELETE_TODO, INCOMPLETE_A_TODO } from "./actionTypes";
+import { ADD_TODO, CLEAR_COMPLETED_TODO, COMPLETE_ALL_TODO, COMPLETE_A_TODO, DELETE_TODO, INCOMPLETE_A_TODO, UPDATE_COLOR_OF_TODO } from "./actionTypes";
 
 const initialTodoState = []
 
@@ -33,7 +33,13 @@ const todoReducer = (state = initialTodoState, action) => {
 
         case CLEAR_COMPLETED_TODO:
             return [...state].filter(todo => todo.status !== "completed")
-
+        case UPDATE_COLOR_OF_TODO:
+            return [...state].map(todo => {
+                if (todo.todoId === action.payload.todoId) {
+                    todo.color = action.payload.color
+                }
+                return { ...todo }
+            })
         default:
             break;
     }
