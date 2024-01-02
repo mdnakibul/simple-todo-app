@@ -26,7 +26,10 @@ const todoReducer = (state = initialTodoState, action) => {
                 return { ...todo }
             })
         case COMPLETE_ALL_TODO:
-            return [...state].map(todo => todo.status = "completed")
+            return [...state].map(todo => {
+                todo.status = "completed"
+                return { ...todo }
+            })
 
         case CLEAR_COMPLETED_TODO:
             return [...state].filter(todo => todo.status !== "completed")
