@@ -41,7 +41,7 @@ const todoReducer = (state = initialTodoState, action) => {
                 return { ...todo }
             })
         default:
-            break;
+            return state
     }
 }
 
