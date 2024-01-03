@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 export default function Footer() {
-    const todos = useSelector(state => state)
+    const todos = useSelector(state => state.todos)
     const pendingTodos = todos?.filter(todo => todo.status === 'pending')
     return (
         <div className="mt-4 flex justify-between text-xs text-gray-500">
