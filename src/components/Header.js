@@ -21,6 +21,7 @@ export default function Header() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        document.getElementById('todo-form').reset()
         dispatch(addTodo(todoFormData))
     }
 
@@ -33,7 +34,7 @@ export default function Header() {
     }
     return (
         <div>
-            <form className="flex items-center bg-gray-100 px-4 py-4 rounded-md" onSubmit={handleSubmit}>
+            <form className="flex items-center bg-gray-100 px-4 py-4 rounded-md" onSubmit={handleSubmit} id="todo-form">
                 <img src={noteImage} className="w-6 h-6" alt="Add todo" />
                 <input
                     type="text"
